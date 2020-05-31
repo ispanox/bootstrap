@@ -1,5 +1,3 @@
-// stylelint-disable no-duplicate-selectors
-
 //
 // Grid examples
 //
@@ -8,21 +6,27 @@
   .row {
     > .col,
     > [class^="col-"] {
-      padding-top: .75rem;
-      padding-bottom: .75rem;
+      padding: .75rem;
       background-color: rgba(39, 41, 43, .03);
       border: 1px solid rgba(39, 41, 43, .1);
+
+      // Show class if divs are empty
+      &:empty::after {
+        content: attr(class);
+      }
     }
   }
 
   .row + .row {
-    margin-top: 1rem;
+    margin-top: 0;
   }
 }
 
 .bd-example-row-flex-cols .row {
   min-height: 10rem;
   background-color: rgba(255, 0, 0, .1);
+  // Counteract row margins:
+  box-shadow: inset $grid-gutter-width $grid-gutter-width $body-bg;
 }
 
 .bd-highlight {
